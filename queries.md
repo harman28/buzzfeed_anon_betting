@@ -1,4 +1,8 @@
-Steps (1) and (2) of the methodology are taken care of by our setup. For Step (3), we need an `median_implied_prob` table to store median probabilities calculated for each match by each bookie. Join this with the main matches table to find the valid match books (without anomalous opening odds), and distinct matches for good measure. Also leave out walkovers and cancellations.
+## Steps (1) and (2)
+Taken care of by our setup.
+
+## Step (3)
+We need an `median_implied_prob` table to store median probabilities calculated for each match by each bookie. Join this with the main matches table to find the valid match books (without anomalous opening odds), and distinct matches for good measure. Also leave out walkovers and cancellations.
 
     WITH 
     median_implied_prob AS (
@@ -22,7 +26,7 @@ Result:
 
 Close enough. Buzzfeed got 25,993 matches, although I don't have a good explanation for the difference if we're using exactly the same data. I tried changing < to <=, made no difference.
 
-Step (4)
+## Step (4)
 
 High-movement matches are defined as those that see the odds shift by more than 10 percent between open and close.
 
@@ -44,7 +48,7 @@ Result:
 
 Again, slightly off. This is 10.4% of the valid matches and 10.2% of all matches. Buzzfeed reported 11% of all matches were 'high-movement'. No idea why this is happening.
 
-Step (5)
+## Step (5)
 
 To make the next bit simpler, a table that just stores each match and its loser. Hack.
 
